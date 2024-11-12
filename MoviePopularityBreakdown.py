@@ -17,7 +17,7 @@ class MoviePopularityBreakdown(MRJob):
         yield None, (key, sum(values))
 
     def reducer_sort_movies_by_ratings_count(self, _, pairs):
-        for movie, count in sorted(pairs, key=lambda x: int(x[0])):
+        for movie, count in sorted(pairs, key=lambda x: int(x[1])):
             yield movie, count
 
 
