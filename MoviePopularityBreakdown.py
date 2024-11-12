@@ -18,7 +18,7 @@ class MoviePopularityBreakdown(MRJob):
 
     def reducer_sort_movies_by_ratings_count(self, count, movies):
         for movie in movies:
-            yield rating, count
+            yield movie, count
 
 
 if __name__ == '__main__':
