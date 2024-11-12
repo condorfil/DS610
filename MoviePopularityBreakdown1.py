@@ -11,15 +11,15 @@ class MoviePopularityBreakdown(MRJob):
 
     def mapper_get_movie(self, _, line):
         (userID, movieID, rating, timestamp) = line.split('\t')
-        print(userID + " , " + movieID + " , " + rating + " , " + timestamp)
+        print(str(userID) + " , " + str(movieID) + " , " + str(rating) + " , " + str(timestamp))
         yield movieID, 1
 
     def reducer_count_ratings_for_movie(self, key, values):
-        print(key + " , " + values)
+        print(str(key) + " , " + str(values))
         yield sum(values), key
 
     def reducer_sort_movies_by_ratings_count(self, count, movies):
-        print(count + " , " + movies)
+        print(str(count) + " , " + str(movies))
         for movie in movies:
             yield movie, count
 
