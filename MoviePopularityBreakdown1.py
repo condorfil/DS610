@@ -14,10 +14,10 @@ class MoviePopularityBreakdown(MRJob):
         yield movieID, 1
 
     def reducer_count_ratings_for_movie(self, key, values):
-        yield key, sum(values)
+        yield None, (key, sum(values))
 
-    def reducer_sort_movies_by_ratings_count(self, movie, counts):
-        for count in sorted(counts):
+    def reducer_sort_movies_by_ratings_count(self, _, pairs):
+        for movie, count in sorted(pairs, key=lambda x: int(x[0])):
             yield movie, count
 
 
